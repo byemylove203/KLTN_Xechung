@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:xechung/screen/home.dart';
+import 'package:xechung/screen/homescreen.dart';
+import 'package:xechung/screen/navbar.dart';
 import 'package:xechung/screen/login.dart';
 
 Future<void> main() async {
@@ -60,6 +61,6 @@ class _InitializerWidgetState extends State<InitializerWidget> {
           )
         : _user == null
             ? login()
-            : home();
+            : navbar();
   }
 }

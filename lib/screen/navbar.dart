@@ -1,23 +1,38 @@
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:xechung/screen/login.dart';
 import 'package:flutter/material.dart';
-import 'package:xechung/screen/login.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:ionicons/ionicons.dart';
 
-class home extends StatefulWidget {
-  const home({Key? key}) : super(key: key);
+import 'package:xechung/screen/homescreen.dart';
+import 'package:xechung/screen/hostscreen.dart';
+import 'package:xechung/screen/messagescreen.dart';
+import 'package:xechung/screen/searchscreen.dart';
+import 'package:xechung/screen/userscreen.dart';
+
+class navbar extends StatefulWidget {
+  const navbar({Key? key}) : super(key: key);
 
   @override
-  _homeState createState() => _homeState();
+  _navbarState createState() => _navbarState();
 }
 
-class _homeState extends State<home> {
-  final _auth = FirebaseAuth.instance;
-  int _currentIndex = 0;
+class _navbarState extends State<navbar> {
+  //final _auth = FirebaseAuth.instance;
+
+  int _seletedIndex = 0;
+  List<Widget> _widgetOptions = <Widget>[
+    homescreen(),
+    searchscreen(),
+    messagescreen(),
+    hostscreen(),
+    userscreen(),
+  ];
+
   Widget _buildTitle() {
     void _onItemTap(int index) {
       setState(() {
-        _currentIndex = index;
+        _seletedIndex = index;
       });
     }
 
@@ -49,7 +64,7 @@ class _homeState extends State<home> {
 //            title: Text("Tài Khoản"),
           ),
         ],
-        currentIndex: _currentIndex,
+        currentIndex: _seletedIndex,
         onTap: _onItemTap);
   }
 
@@ -57,24 +72,21 @@ class _homeState extends State<home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Trang chủ"),
+        title: Text("Xe Chung"),
         backgroundColor: Colors.black,
       ),
       body: Center(
-        child: Text(
-          "USER LOGGED IN",
-          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-        ),
+        child: _widgetOptions.elementAt(_seletedIndex),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.black,
-        onPressed: () async {
-          await _auth.signOut();
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => login()));
-        },
-        child: Icon(Ionicons.log_out_outline),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: Colors.black,
+      //   onPressed: () async {
+      //     await _auth.signOut();
+      //     Navigator.pushReplacement(
+      //         context, MaterialPageRoute(builder: (context) => login()));
+      //   },
+      //   child: Icon(Ionicons.log_out_outline),
+      // ),
       bottomNavigationBar: _buildTitle(),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:xechung/screen/home.dart';
+import 'package:xechung/screen/homescreen.dart';
+import 'package:xechung/screen/navbar.dart';
 
 enum MobileVerificationState {
   SHOW_MOBILE_FORM_STATE,
@@ -40,7 +41,7 @@ class _loginState extends State<login> {
 
       if (authCredential?.user != null) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => home()));
+            context, MaterialPageRoute(builder: (context) => navbar()));
       }
     } on FirebaseAuthException catch (e) {
       setState(() {
