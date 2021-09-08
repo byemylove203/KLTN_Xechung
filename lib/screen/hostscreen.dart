@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:xechung/screen/addcarscreen.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:xechung/screen/addcarscreen/addcarscreen.dart';
 
 class hostscreen extends StatefulWidget {
   const hostscreen({Key? key}) : super(key: key);
@@ -15,25 +17,7 @@ class _hostscreenState extends State<hostscreen> {
       body: Center(
         child: Column(
           children: <Widget>[
-            Container(
-              margin: EdgeInsets.all(15),
-              child: TextButton(
-                child: Text(
-                  "Đọc Dữ Liệu",
-                  style: TextStyle(fontSize: 15.0),
-                ),
-                style: ButtonStyle(
-                    padding: MaterialStateProperty.all<EdgeInsets>(
-                        EdgeInsets.all(15)),
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.black),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.black)))),
-                onPressed: () {},
-              ),
-            ),
+            SizedBox(height: 50),
             Container(
               margin: EdgeInsets.all(15),
               child: TextButton(
@@ -51,53 +35,15 @@ class _hostscreenState extends State<hostscreen> {
                             borderRadius: BorderRadius.circular(18.0),
                             side: BorderSide(color: Colors.black)))),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => addcarscreen()));
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                          type: PageTransitionType.bottomToTop,
+                          duration: Duration(milliseconds: 300),
+                          reverseDuration: Duration(milliseconds: 300),
+                          child: addcarscreen()));
                 },
               ),
-            ),
-            Container(
-              margin: EdgeInsets.all(15),
-              child: TextButton(
-                child: Text(
-                  "Sửa Dữ Liệu",
-                  style: TextStyle(fontSize: 15.0),
-                ),
-                style: ButtonStyle(
-                    padding: MaterialStateProperty.all<EdgeInsets>(
-                        EdgeInsets.all(15)),
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.black),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.black)))),
-                onPressed: () {},
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.all(15),
-              child: TextButton(
-                child: Text(
-                  "Xoá Dữ Liệu",
-                  style: TextStyle(fontSize: 15.0),
-                ),
-                style: ButtonStyle(
-                    padding: MaterialStateProperty.all<EdgeInsets>(
-                        EdgeInsets.all(15)),
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.black),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.black)))),
-                onPressed: () {},
-              ),
-            ),
-            Text(
-              data.toString(),
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30),
             ),
           ],
         ),

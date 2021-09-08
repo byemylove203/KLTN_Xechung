@@ -58,6 +58,7 @@ class _loginState extends State<login> {
         Spacer(),
         TextField(
           controller: phoneController,
+          keyboardType: TextInputType.number,
           decoration: InputDecoration(hintText: "Phone Number"),
         ),
         SizedBox(
@@ -70,7 +71,7 @@ class _loginState extends State<login> {
             });
 
             await _auth.verifyPhoneNumber(
-              phoneNumber: phoneController.text,
+              phoneNumber: "+84" + phoneController.text,
               verificationCompleted: (PhoneAuthCredential) async {
                 setState(() {
                   showLoading = false;
@@ -106,6 +107,7 @@ class _loginState extends State<login> {
       children: [
         Spacer(),
         TextField(
+          keyboardType: TextInputType.number,
           controller: optController,
           decoration: InputDecoration(hintText: "Enter OTP"),
         ),
