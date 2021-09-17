@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:xechung/const/const.dart';
 
-const kPrimaryColor = Colors.black;
-
-class ProfileMenu extends StatelessWidget {
-  const ProfileMenu({
+class customButton extends StatelessWidget {
+  const customButton({
     Key? key,
     required this.text,
     required this.icon,
@@ -20,7 +19,7 @@ class ProfileMenu extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: TextButton(
         style: TextButton.styleFrom(
-          primary: kPrimaryColor,
+          primary: Constants.buttonTextColor,
           padding: EdgeInsets.all(20),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),

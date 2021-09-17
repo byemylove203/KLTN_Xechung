@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:xechung/screen/homescreen.dart';
+
 import 'package:xechung/screen/navbar.dart';
 
 enum MobileVerificationState {
@@ -39,7 +39,8 @@ class _loginState extends State<login> {
         showLoading = false;
       });
 
-      if (authCredential?.user != null) {
+      //if (authCredential?.user != null) {
+      if (authCredential.user != null) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => navbar()));
       }
