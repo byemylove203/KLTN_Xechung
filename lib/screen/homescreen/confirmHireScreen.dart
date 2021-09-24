@@ -54,6 +54,10 @@ class _confirmHireScreenState extends State<confirmHireScreen> {
   }
 
   Future<void> addNewHire() async {
+    String startDate = "";
+    String endDate = "";
+    String startHour = "";
+    String endHour = "";
     String carId = widget.car!.carID.toString();
     final _auth = FirebaseAuth.instance;
     final User? user = _auth.currentUser;
@@ -64,7 +68,7 @@ class _confirmHireScreenState extends State<confirmHireScreen> {
         FirebaseFirestore.instance.collection('bookingOrder');
 
     print(carStatus.doc(carId).get());
-    carStatus.doc(carId).update({'Status': 'Hired'});
+    carStatus.doc(carId).update({'Status': 'Đã thuê'});
 
     // docs.forEach((element) {
     //   print(element["Status"]);
@@ -74,7 +78,12 @@ class _confirmHireScreenState extends State<confirmHireScreen> {
       "Price": "200k",
       "Hire Duration": "1 ngày",
       "Client User ID": uid,
+      "Host User ID": uid,
       "CarID": carId,
+      "Start Date": startDate,
+      "End Date": endDate,
+      "Start Hour": startHour,
+      "End Hour": endHour,
       "OrderID": orderID,
     };
     bookingOrder.add(order);

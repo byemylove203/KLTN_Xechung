@@ -8,8 +8,8 @@ import 'package:xechung/screen/homescreen/homescreen.dart';
 import 'package:xechung/screen/hostscreen.dart';
 import 'package:xechung/screen/messagescreen.dart';
 import 'package:xechung/screen/bookingHistory/bookedCarHistory.dart';
-import 'package:xechung/screen/userscreen.dart';
-import 'package:xechung/widget/headertext.dart';
+import 'package:xechung/screen/profileScreen.dart';
+import 'package:xechung/widget/customtext.dart';
 
 class navbar extends StatefulWidget {
   const navbar({Key? key}) : super(key: key);
@@ -46,7 +46,7 @@ class _navbarState extends State<navbar> {
         items: [
           CustomNavigationBarItem(
             icon: Icon(Ionicons.home),
-            title: headerText(
+            title: customText(
               "Trang Chủ",
               FontWeight.normal,
               size: 10,
@@ -54,7 +54,7 @@ class _navbarState extends State<navbar> {
           ),
           CustomNavigationBarItem(
             icon: Icon(Ionicons.calendar_outline),
-            title: headerText(
+            title: customText(
               "Lịch sử",
               FontWeight.normal,
               size: 10,
@@ -62,7 +62,7 @@ class _navbarState extends State<navbar> {
           ),
           CustomNavigationBarItem(
             icon: Icon(Ionicons.chatbox_ellipses),
-            title: headerText(
+            title: customText(
               "Tin nhắn",
               FontWeight.normal,
               size: 10,
@@ -70,7 +70,7 @@ class _navbarState extends State<navbar> {
           ),
           CustomNavigationBarItem(
             icon: Icon(Ionicons.car),
-            title: headerText(
+            title: customText(
               "Chủ xe",
               FontWeight.normal,
               size: 10,
@@ -78,7 +78,7 @@ class _navbarState extends State<navbar> {
           ),
           CustomNavigationBarItem(
             icon: Icon(Ionicons.person_circle),
-            title: headerText(
+            title: customText(
               "Tài khoản",
               FontWeight.normal,
               size: 10,

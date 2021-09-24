@@ -44,7 +44,7 @@ class editcarScreen extends StatelessWidget {
                         FirebaseFirestore.instance
                             .collection("carInfo")
                             .doc(car.carID)
-                            .update({"User": FieldValue.delete()});
+                            .update({"User": "None"});
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(builder: (context) => navbar()),

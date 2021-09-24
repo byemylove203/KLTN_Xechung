@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:xechung/screen/addcarscreen/description.dart';
 import 'package:xechung/const/const.dart';
-import 'package:xechung/widget/headertext.dart';
+import 'package:xechung/widget/customtext.dart';
 
 class carFeatures extends StatefulWidget {
   final Map<String, dynamic>? carInfo;
@@ -41,59 +41,61 @@ class _carFeaturesState extends State<carFeatures> {
           onPressed: () => Navigator.pop(context, false),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            headerText(
-              "Tính năng của xe",
-              FontWeight.bold,
-              size: 30,
-            ),
-            headerText(
-              "Chọn tính năng xe bạn có.",
-              FontWeight.normal,
-              size: 18,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 10,
-                    ),
-                    customRadio(list[0], 0),
-                    customRadio(list[1], 1),
-                    customRadio(list[2], 2),
-                    customRadio(list[3], 3),
-                    customRadio(list[4], 4),
-                    SizedBox(
-                      height: 50,
-                    ),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 10,
-                    ),
-                    customRadio(list[5], 5),
-                    customRadio(list[6], 6),
-                    customRadio(list[7], 7),
-                    customRadio(list[8], 8),
-                    customRadio(list[9], 9),
-                    SizedBox(
-                      height: 50,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(
+      body: Column(
+        children: [
+          customText(
+            "Tính năng của xe",
+            FontWeight.bold,
+            size: 30,
+          ),
+          customText(
+            "Chọn tính năng xe bạn có.",
+            FontWeight.normal,
+            size: 18,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 10,
+                  ),
+                  customRadio(list[0], 0),
+                  customRadio(list[1], 1),
+                  customRadio(list[2], 2),
+                  customRadio(list[3], 3),
+                  customRadio(list[4], 4),
+                  SizedBox(
+                    height: 50,
+                  ),
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 10,
+                  ),
+                  customRadio(list[5], 5),
+                  customRadio(list[6], 6),
+                  customRadio(list[7], 7),
+                  customRadio(list[8], 8),
+                  customRadio(list[9], 9),
+                  SizedBox(
+                    height: 50,
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Spacer(),
+          Container(
+            padding: EdgeInsets.only(bottom: 40),
+            child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,
               child: TextButton(
                   child: Text(
@@ -126,8 +128,8 @@ class _carFeaturesState extends State<carFeatures> {
                                 )));
                   }),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

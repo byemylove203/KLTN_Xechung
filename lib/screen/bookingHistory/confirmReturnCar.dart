@@ -13,7 +13,7 @@ class confirmReturnCar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(car.status);
+    // print(car.status);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -31,7 +31,7 @@ class confirmReturnCar extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.9,
                   child: TextButton(
                       child: Text(
-                        car.status == "Hired" ? "XÁC NHẬN TRẢ XE" : "ĐẶT LẠI",
+                        car.status == "Đã thuê" ? "XÁC NHẬN TRẢ XE" : "ĐẶT LẠI",
                         style: TextStyle(fontSize: 15.0, color: Colors.white),
                       ),
                       style: ButtonStyle(
@@ -41,12 +41,10 @@ class confirmReturnCar extends StatelessWidget {
                             EdgeInsets.all(15)),
                       ),
                       onPressed: () {
-                        if (car.status == "Hired") {
+                        if (car.status == "Đã thuê") {
                           CollectionReference carStatus =
                               FirebaseFirestore.instance.collection('carInfo');
-                          carStatus
-                              .doc(car.carID)
-                              .update({'Status': 'notHired'});
+                          carStatus.doc(car.carID).update({'Status': 'Có sẵn'});
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(builder: (context) => navbar()),

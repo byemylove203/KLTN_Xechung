@@ -5,11 +5,12 @@ class Car {
   String descripstion;
   String feature;
   String carID;
+  String userID;
   String status;
   bool favorite;
   bool newest;
   Car(this.name, this.imageUrl, this.price, this.descripstion, this.feature,
-      this.carID, this.status, this.favorite, this.newest);
+      this.carID, this.userID, this.status, this.favorite, this.newest);
 }
 
 // List<Car> getCarList() {

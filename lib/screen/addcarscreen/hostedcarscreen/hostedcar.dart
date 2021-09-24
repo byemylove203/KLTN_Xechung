@@ -52,6 +52,7 @@ class hostedCar extends StatelessWidget {
                                 document['Description'],
                                 document['Features'],
                                 document['Car ID'],
+                                document['User'],
                                 document['Status'],
                                 true,
                                 true));

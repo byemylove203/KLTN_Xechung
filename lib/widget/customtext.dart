@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class headerText extends StatelessWidget {
+class customText extends StatelessWidget {
   final String text;
   final Color color;
   final double size;
   final FontWeight fontWeight;
-  headerText(this.text, this.fontWeight,
+  customText(this.text, this.fontWeight,
       {this.color = Colors.black, this.size = 23});
 
   @override

@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:xechung/const/const.dart';
 import 'package:xechung/model/bookedOders.dart';
 import 'package:xechung/model/car.dart';
 import 'package:xechung/screen/bookingHistory/confirmReturnCar.dart';
@@ -13,7 +15,7 @@ class bookedCarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     double widgetHeight = MediaQuery.of(context).size.height / 3;
     Car car = Car("t", ["imageUrl"], "price", "descripstion", "feature",
-        "carID", "status", true, true);
+        "carID", "User", "status", true, true);
     return StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('carInfo')
@@ -49,24 +51,32 @@ class bookedCarWidget extends StatelessWidget {
                       document['Description'],
                       document['Features'],
                       document['Car ID'],
+                      document['User'],
                       document['Status'],
                       true,
                       true);
                   return Column(
                     children: [
                       Container(
-                        color: Colors.green,
                         child: SizedBox(
                           height: widgetHeight / 6,
                           child: Padding(
-                            padding: const EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(12),
                             child: Row(
                               children: [
-                                Text("User Name"),
+                                Icon(Ionicons.people),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: Text(car.userID),
+                                ),
                                 Spacer(
                                   flex: 2,
                                 ),
-                                Text(car.status)
+                                Text(
+                                  car.status,
+                                  style:
+                                      TextStyle(color: Constants.kPrimaryColor),
+                                )
                               ],
                             ),
                           ),

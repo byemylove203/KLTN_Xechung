@@ -3,7 +3,7 @@ import 'package:ionicons/ionicons.dart';
 
 import 'package:xechung/const/const.dart';
 import 'package:xechung/screen/addcarscreen/confirmAddNewCar.dart';
-import 'package:xechung/widget/headertext.dart';
+import 'package:xechung/widget/customtext.dart';
 
 class description extends StatefulWidget {
   final Map<String, dynamic>? carInfo;
@@ -34,17 +34,17 @@ class _descriptionState extends State<description> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              headerText(
+              customText(
                 "Mô tả",
                 FontWeight.bold,
                 size: 30,
               ),
-              headerText(
+              customText(
                 "Cho khách hàng biết vì sao họ nên thuê xe của bạn.",
                 FontWeight.normal,
                 size: 16,
               ),
-              headerText(
+              customText(
                 "Bạn nên tả cái gì?",
                 FontWeight.bold,
                 size: 20,

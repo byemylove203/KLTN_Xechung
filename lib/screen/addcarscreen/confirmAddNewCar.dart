@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 
 import 'package:ionicons/ionicons.dart';
 import 'package:xechung/const/const.dart';
+import 'package:xechung/screen/addcarscreen/hostedcarscreen/addCarImage.dart';
 
 import 'package:xechung/screen/navbar.dart';
 
-import 'package:xechung/widget/headertext.dart';
+import 'package:xechung/widget/customtext.dart';
 
 class confirmAddNewCar extends StatefulWidget {
   final Map<String, dynamic>? carInfo;
@@ -19,10 +20,11 @@ class confirmAddNewCar extends StatefulWidget {
 }
 
 class _confirmAddNewCarState extends State<confirmAddNewCar> {
+  final liscensePlateController = TextEditingController();
   late FixedExtentScrollController schrollController;
   final tinhthanh = Constants.tinhthanh;
   String selected = "Chọn";
-  String status = "notHired";
+  String status = "Có sẵn";
   String bienso = "00000"; //final data (need to parse)
   int index = 0;
   @override
@@ -39,7 +41,6 @@ class _confirmAddNewCarState extends State<confirmAddNewCar> {
 
   @override
   Widget build(BuildContext context) {
-    final liscensePlateController = TextEditingController();
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -56,12 +57,12 @@ class _confirmAddNewCarState extends State<confirmAddNewCar> {
           ),
           body: Column(
             children: [
-              headerText(
+              customText(
                 "Biển số xe",
                 FontWeight.bold,
                 size: 30,
               ),
-              headerText(
+              customText(
                 "Điền thông tin biển số xe của bạn. Thông tin này sẽ không được công khai.",
                 FontWeight.normal,
                 size: 16,
@@ -89,13 +90,14 @@ class _confirmAddNewCarState extends State<confirmAddNewCar> {
                           left: 15, bottom: 11, top: 11, right: 15),
                       hintText: "Biển số xe"),
                   onChanged: (value) {
-                    bienso = value;
+                    bienso = liscensePlateController.text;
+                    print(bienso);
                   },
                 ),
               ),
               Row(
                 children: [
-                  headerText(
+                  customText(
                     "Tỉnh/ Thành phố",
                     FontWeight.normal,
                     size: 16,
@@ -105,7 +107,7 @@ class _confirmAddNewCarState extends State<confirmAddNewCar> {
                   ),
                   TextButton(
                       onPressed: () {
-                        schrollController.dispose();
+                        //    schrollController.dispose();
                         schrollController =
                             FixedExtentScrollController(initialItem: index);
                         showCupertinoModalPopup(
@@ -123,57 +125,62 @@ class _confirmAddNewCarState extends State<confirmAddNewCar> {
                       ))
                 ],
               ),
-              SizedBox(
-                height: 100,
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: TextButton(
-                  child: Text(
-                    "XÁC NHẬN",
-                    style: TextStyle(fontSize: 15.0, color: Colors.white),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        Constants.kPrimaryColor),
-                    padding: MaterialStateProperty.all<EdgeInsets>(
-                        EdgeInsets.all(15)),
-                    foregroundColor: MaterialStateProperty.all<Color>(
-                        Constants.kPrimaryColor),
-                  ),
-                  onPressed: () {
-                    FirebaseFirestore.instance
-                        .collection("carInfo")
-                        .get()
-                        .then((querySnapshot) {
-                      querySnapshot.docs.forEach((result) {
-                        print(result.data()['Car ID']);
+              Spacer(),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 40.0),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: TextButton(
+                    child: Text(
+                      "XÁC NHẬN",
+                      style: TextStyle(fontSize: 15.0, color: Colors.white),
+                    ),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          Constants.kPrimaryColor),
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          EdgeInsets.all(15)),
+                      foregroundColor: MaterialStateProperty.all<Color>(
+                          Constants.kPrimaryColor),
+                    ),
+                    onPressed: () {
+                      FirebaseFirestore.instance
+                          .collection("carInfo")
+                          .get()
+                          .then((querySnapshot) {
+                        querySnapshot.docs.forEach((result) {
+                          print(result.data()['Car ID']);
+                        });
                       });
-                    });
-                    final carId = DateTime.now().millisecondsSinceEpoch;
-                    final _auth = FirebaseAuth.instance;
-                    final User? user = _auth.currentUser;
-                    final uid = user!.phoneNumber;
-                    Map<String, dynamic> result = {
-                      ...widget.carInfo!,
-                      ...{
-                        "License Plate": liscensePlateController.text,
-                        "Tinh Thanh": selected,
-                        "User": uid,
-                        "Car ID": carId.toString(),
-                        "Status": status
-                      }
-                    };
+                      final carId = DateTime.now().millisecondsSinceEpoch;
+                      final _auth = FirebaseAuth.instance;
+                      final User? user = _auth.currentUser;
+                      final uid = user!.phoneNumber;
+                      Map<String, dynamic> result = {
+                        ...widget.carInfo!,
+                        ...{
+                          "License Plate": liscensePlateController.text,
+                          "Tinh Thanh": selected,
+                          "User": uid,
+                          "Car ID": carId.toString(),
+                          "Status": status
+                        }
+                      };
 
-                    CollectionReference car =
-                        FirebaseFirestore.instance.collection('carInfo');
-                    car.doc(carId.toString()).set(result);
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => navbar()),
-                      (Route<dynamic> route) => false,
-                    );
-                  },
+                      CollectionReference car =
+                          FirebaseFirestore.instance.collection('carInfo');
+                      car.doc(carId.toString()).set(result);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => addCarImage()));
+                      // Navigator.pushAndRemoveUntil(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => navbar()),
+                      //   (Route<dynamic> route) => false,
+                      // );
+                    },
+                  ),
                 ),
               ),
             ],

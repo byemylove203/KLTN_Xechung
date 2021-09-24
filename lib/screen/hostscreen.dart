@@ -30,18 +30,58 @@ class _hostscreenState extends State<hostscreen> {
               text: "Bắt đầu đăng xe",
               icon: Icon(Ionicons.play_outline),
               press: () => {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => addcarscreen()))
+                Navigator.push(
+                    context,
+                    PageTransition(
+                        alignment: Alignment.bottomCenter,
+                        type: PageTransitionType.size,
+                        duration: Duration(milliseconds: 250),
+                        reverseDuration: Duration(milliseconds: 250),
+                        child: addcarscreen()))
               },
             ),
             customButton(
               text: "Quản lý xe",
               icon: Icon(Ionicons.car_outline),
               press: () => {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => hostedCar()))
+                Navigator.push(
+                    context,
+                    PageTransition(
+                        alignment: Alignment.bottomCenter,
+                        type: PageTransitionType.size,
+                        duration: Duration(milliseconds: 300),
+                        reverseDuration: Duration(milliseconds: 300),
+                        child: hostedCar()))
               },
-            )
+            ),
+            // Container(
+            //   margin: EdgeInsets.all(15),
+            //   child: TextButton(
+            //     child: Text(
+            //       "Getting Stated",
+            //       style: TextStyle(fontSize: 15.0),
+            //     ),
+            //     style: ButtonStyle(
+            //         padding: MaterialStateProperty.all<EdgeInsets>(
+            //             EdgeInsets.all(15)),
+            //         foregroundColor:
+            //             MaterialStateProperty.all<Color>(Colors.black),
+            //         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            //             RoundedRectangleBorder(
+            //                 borderRadius: BorderRadius.circular(18.0),
+            //                 side: BorderSide(color: Colors.black)))),
+            //     onPressed: () {
+            //       Navigator.push(
+            //           context,
+            //           PageTransition(
+            //               alignment: Alignment.bottomCenter,
+            //               type: PageTransitionType.size,
+            //               duration: Duration(milliseconds: 300),
+            //               reverseDuration: Duration(milliseconds: 300),
+            //               child: addcarscreen()));
+            //     },
+            // ),
+            // ),
           ],
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:xechung/const/const.dart';
 class customButton extends StatelessWidget {
   const customButton({
     Key? key,
+    this.color = Colors.black,
     required this.text,
     required this.icon,
     this.press,
@@ -12,7 +13,7 @@ class customButton extends StatelessWidget {
   final String text;
   final Icon icon;
   final VoidCallback? press;
-
+  final Color color;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,8 +31,11 @@ class customButton extends StatelessWidget {
           children: [
             icon,
             SizedBox(width: 20),
-            Expanded(child: Text(text)),
-            Icon(Icons.arrow_forward_ios),
+            Expanded(
+                child: Text(
+              text,
+              style: TextStyle(color: color),
+            )),
           ],
         ),
       ),

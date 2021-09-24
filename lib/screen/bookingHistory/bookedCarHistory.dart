@@ -51,7 +51,11 @@ class _bookedCarHistoryState extends State<bookedCarHistory> {
                                     document['OrderID'],
                                     document['CarID'],
                                     document['Client User ID'],
-                                    document['Hire Duration'],
+                                    document['Host User ID'],
+                                    document['Start Date'],
+                                    document['End Date'],
+                                    document['Start Hour'],
+                                    document['End Hour'],
                                     document['Price']));
                           }).toList(),
                         ),
