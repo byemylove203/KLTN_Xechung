@@ -44,7 +44,9 @@ class confirmReturnCar extends StatelessWidget {
                         if (car.status == "Đã thuê") {
                           CollectionReference carStatus =
                               FirebaseFirestore.instance.collection('carInfo');
-                          carStatus.doc(car.carID).update({'Status': 'Có sẵn'});
+                          carStatus
+                              .doc(car.carID.toString())
+                              .update({'Status': 'Có sẵn'});
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(builder: (context) => navbar()),

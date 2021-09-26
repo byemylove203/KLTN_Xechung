@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:ionicons/ionicons.dart';
 import 'package:xechung/screen/addcarscreen/carfeatures.dart';
@@ -15,6 +18,18 @@ class addcarscreen extends StatefulWidget {
 }
 
 class _addcarscreenState extends State<addcarscreen> {
+  Completer<GoogleMapController> _controller = Completer();
+
+  static final CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(37.42796133580664, -122.085749655962),
+    zoom: 14.4746,
+  );
+
+  static final CameraPosition _kLake = CameraPosition(
+      bearing: 192.8334901395799,
+      target: LatLng(37.43296265331129, -122.08832357078792),
+      tilt: 59.440717697143555,
+      zoom: 19.151926040649414);
   final addressController = TextEditingController();
   final cartypeController = TextEditingController();
   String odorController = "0-10 vạn km";
@@ -81,12 +96,66 @@ class _addcarscreenState extends State<addcarscreen> {
                 child: Column(
                   children: <Widget>[
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Thông tin của xe',
-                          style: TextStyle(
-                              fontSize: 30.0, fontWeight: FontWeight.w700),
+                      children: [
+                        Icon(
+                          Icons.trip_origin,
+                          color: Colors.blue,
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: Container(
+                            margin:
+                                EdgeInsets.only(left: 10, top: 10, bottom: 10),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: Colors.white),
+                            child: SizedBox(
+                              height: 60,
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              child: Center(child: Text("Chọn điểm đón")),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.location_on,
+                          color: Colors.red,
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(
+                            left: 10,
+                            top: 10,
+                            bottom: 10,
+                          ),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: Colors.white),
+                          child: SizedBox(
+                            height: 60,
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            child: InkWell(
+                              onTap: () {},
+                              child: Container(
+                                margin: EdgeInsets.only(
+                                  left: 10,
+                                  top: 10,
+                                  bottom: 10,
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: Colors.white),
+                                child: SizedBox(
+                                  height: 60,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.8,
+                                  child: Center(child: Text("Chọn điểm xuống")),
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),

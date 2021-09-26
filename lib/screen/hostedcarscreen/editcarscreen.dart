@@ -43,7 +43,7 @@ class editcarScreen extends StatelessWidget {
                       onPressed: () {
                         FirebaseFirestore.instance
                             .collection("carInfo")
-                            .doc(car.carID)
+                            .doc(car.carID.toString())
                             .update({"User": "None"});
                         Navigator.pushAndRemoveUntil(
                           context,

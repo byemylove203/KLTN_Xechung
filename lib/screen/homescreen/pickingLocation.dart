@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:xechung/const/const.dart';
 import 'package:xechung/model/car.dart';
-import 'package:xechung/screen/homescreen/confirmHireScreen.dart';
+import 'package:xechung/screen/homescreen/confirmBookScreen.dart';
 
 class pickingLocation extends StatefulWidget {
   final Car? car;

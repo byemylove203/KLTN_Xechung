@@ -6,7 +6,7 @@ import 'package:ionicons/ionicons.dart';
 
 import 'package:xechung/screen/homescreen/homescreen.dart';
 import 'package:xechung/screen/hostscreen.dart';
-import 'package:xechung/screen/messagescreen.dart';
+import 'package:xechung/screen/searchscreen/searchscreen.dart';
 import 'package:xechung/screen/bookingHistory/bookedCarHistory.dart';
 import 'package:xechung/screen/profileScreen.dart';
 import 'package:xechung/widget/customtext.dart';
@@ -21,11 +21,11 @@ class navbar extends StatefulWidget {
 class _navbarState extends State<navbar> {
   //final _auth = FirebaseAuth.instance;
 //Defaut Screen, change this to set default screen!!!!!
-  int _seletedIndex = 0;
+  int _seletedIndex = 2;
   List<Widget> _widgetOptions = <Widget>[
     homescreen(),
     bookedCarHistory(),
-    messagescreen(),
+    searchScreen(),
     hostscreen(),
     userscreen(),
   ];
@@ -38,7 +38,7 @@ class _navbarState extends State<navbar> {
     }
 
     return CustomNavigationBar(
-        iconSize: 25.0,
+        iconSize: 24.0,
         strokeColor: Colors.white,
         selectedColor: Color(0xff7BE495),
         unSelectedColor: Colors.grey,
@@ -61,9 +61,9 @@ class _navbarState extends State<navbar> {
             ),
           ),
           CustomNavigationBarItem(
-            icon: Icon(Ionicons.chatbox_ellipses),
+            icon: Icon(Ionicons.search_outline),
             title: customText(
-              "Tin nhắn",
+              "Tìm kiếm",
               FontWeight.normal,
               size: 10,
             ),

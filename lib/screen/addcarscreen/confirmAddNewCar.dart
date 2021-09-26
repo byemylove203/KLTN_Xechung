@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,7 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'package:ionicons/ionicons.dart';
 import 'package:xechung/const/const.dart';
-import 'package:xechung/screen/addcarscreen/hostedcarscreen/addCarImage.dart';
+import 'package:xechung/screen/addcarscreen/addCarImage.dart';
 
 import 'package:xechung/screen/navbar.dart';
 
@@ -21,6 +23,7 @@ class confirmAddNewCar extends StatefulWidget {
 
 class _confirmAddNewCarState extends State<confirmAddNewCar> {
   final liscensePlateController = TextEditingController();
+  int carId = 0;
   late FixedExtentScrollController schrollController;
   final tinhthanh = Constants.tinhthanh;
   String selected = "Chọn";
@@ -149,10 +152,11 @@ class _confirmAddNewCarState extends State<confirmAddNewCar> {
                           .get()
                           .then((querySnapshot) {
                         querySnapshot.docs.forEach((result) {
-                          print(result.data()['Car ID']);
+                          carId = max(carId, result.data()['Car ID']);
                         });
+                        print(carId);
                       });
-                      final carId = DateTime.now().millisecondsSinceEpoch;
+
                       final _auth = FirebaseAuth.instance;
                       final User? user = _auth.currentUser;
                       final uid = user!.phoneNumber;
@@ -162,18 +166,17 @@ class _confirmAddNewCarState extends State<confirmAddNewCar> {
                           "License Plate": liscensePlateController.text,
                           "Tinh Thanh": selected,
                           "User": uid,
-                          "Car ID": carId.toString(),
                           "Status": status
                         }
                       };
 
-                      CollectionReference car =
-                          FirebaseFirestore.instance.collection('carInfo');
-                      car.doc(carId.toString()).set(result);
+                      //car.doc(carId.toString()).set(result);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => addCarImage()));
+                              builder: (context) => addCarImage(
+                                    carInfo: result,
+                                  )));
                       // Navigator.pushAndRemoveUntil(
                       //   context,
                       //   MaterialPageRoute(builder: (context) => navbar()),

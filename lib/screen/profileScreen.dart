@@ -4,7 +4,7 @@ import 'package:ionicons/ionicons.dart';
 
 import 'package:xechung/screen/login.dart';
 import '../widget/customButton.dart';
-import 'addcarscreen/hostedcarscreen/addCarImage.dart';
+import 'addcarscreen/addCarImage.dart';
 
 class userscreen extends StatefulWidget {
   const userscreen({Key? key}) : super(key: key);

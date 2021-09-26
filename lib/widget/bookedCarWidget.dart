@@ -14,8 +14,8 @@ class bookedCarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double widgetHeight = MediaQuery.of(context).size.height / 3;
-    Car car = Car("t", ["imageUrl"], "price", "descripstion", "feature",
-        "carID", "User", "status", true, true);
+    Car car = Car("t", ["imageUrl"], "price", "descripstion", "feature", 0,
+        "User", "status", true, true);
     return StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('carInfo')
@@ -46,7 +46,7 @@ class bookedCarWidget extends StatelessWidget {
                 children: snapshot.data!.docs.map((document) {
                   car = Car(
                       document['Type'],
-                      ["assets/images/car.jpeg", "assets/images/car_1.jpeg"],
+                      document['Images URL'],
                       orders.price,
                       document['Description'],
                       document['Features'],
@@ -55,6 +55,7 @@ class bookedCarWidget extends StatelessWidget {
                       document['Status'],
                       true,
                       true);
+
                   return Column(
                     children: [
                       Container(
@@ -95,7 +96,7 @@ class bookedCarWidget extends StatelessWidget {
                                 width: 180,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
-                                        image: AssetImage(car.imageUrl[0]),
+                                        image: NetworkImage(car.imageUrl[0]),
                                         fit: BoxFit.cover)),
                               ),
                               Flexible(

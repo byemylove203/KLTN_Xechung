@@ -58,7 +58,7 @@ class _confirmHireScreenState extends State<confirmHireScreen> {
     String endDate = "";
     String startHour = "";
     String endHour = "";
-    String carId = widget.car!.carID.toString();
+    int carId = widget.car!.carID;
     final _auth = FirebaseAuth.instance;
     final User? user = _auth.currentUser;
     final uid = user!.phoneNumber;
@@ -67,8 +67,7 @@ class _confirmHireScreenState extends State<confirmHireScreen> {
     CollectionReference bookingOrder =
         FirebaseFirestore.instance.collection('bookingOrder');
 
-    print(carStatus.doc(carId).get());
-    carStatus.doc(carId).update({'Status': 'Đã thuê'});
+    carStatus.doc(carId.toString()).update({'Status': 'Đã thuê'});
 
     // docs.forEach((element) {
     //   print(element["Status"]);
@@ -86,7 +85,7 @@ class _confirmHireScreenState extends State<confirmHireScreen> {
       "End Hour": endHour,
       "OrderID": orderID,
     };
-    bookingOrder.add(order);
+    bookingOrder.doc(carId.toString()).set(order);
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => navbar()),

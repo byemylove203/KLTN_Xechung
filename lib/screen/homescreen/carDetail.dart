@@ -274,7 +274,7 @@ class carDetail extends StatelessWidget {
 Widget buildImage(String urlImage, int index) => Container(
       //margin: EdgeInsets.symmetric(horizontal: 12),
       color: Colors.grey,
-      child: Image.asset(
+      child: Image.network(
         urlImage,
         fit: BoxFit.fitHeight,
       ),

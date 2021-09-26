@@ -4,7 +4,7 @@ import 'package:ionicons/ionicons.dart';
 
 import 'package:page_transition/page_transition.dart';
 import 'package:xechung/screen/addcarscreen/addcarscreen.dart';
-import 'package:xechung/screen/addcarscreen/hostedcarscreen/hostedcar.dart';
+import 'package:xechung/screen/hostedcarscreen/hostedcar.dart';
 import 'package:xechung/widget/customButton.dart';
 
 class hostscreen extends StatefulWidget {
@@ -27,7 +27,7 @@ class _hostscreenState extends State<hostscreen> {
           children: <Widget>[
             SizedBox(height: 50),
             customButton(
-              text: "Bắt đầu đăng xe",
+              text: "Đăng lộ trình của bạn",
               icon: Icon(Ionicons.play_outline),
               press: () => {
                 Navigator.push(

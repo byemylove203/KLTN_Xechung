@@ -1,6 +1,6 @@
 class bookedOrders {
   String orderID;
-  String carID;
+  int carID;
   String clientUserID;
   String hostID;
   String startDate;

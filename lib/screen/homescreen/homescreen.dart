@@ -14,6 +14,7 @@ class homescreen extends StatefulWidget {
 
 class _homescreenState extends State<homescreen> {
   final double expandedHeight = 400;
+
   //List<Car> cars = getCarList();
   @override
   Widget build(BuildContext context) {
@@ -92,6 +93,9 @@ class _homescreenState extends State<homescreen> {
             stream: FirebaseFirestore.instance
                 .collection('carInfo')
                 .where('Status', isEqualTo: 'Có sẵn')
+                .where('User', isNotEqualTo: 'None')
+                .orderBy('User')
+                .orderBy('Car ID', descending: true)
                 .snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -135,10 +139,7 @@ class _homescreenState extends State<homescreen> {
                       return carWidget(
                           car: Car(
                               document['Type'],
-                              [
-                                "assets/images/car.jpeg",
-                                "assets/images/car_1.jpeg"
-                              ],
+                              document['Images URL'],
                               document['Odormeter'],
                               document['Description'],
                               document['Features'],
@@ -167,10 +168,7 @@ class _homescreenState extends State<homescreen> {
                       return carWidget(
                           car: Car(
                               document['Type'],
-                              [
-                                "assets/images/car.jpeg",
-                                "assets/images/car_1.jpeg"
-                              ],
+                              document['Images URL'],
                               document['Odormeter'],
                               document['Description'],
                               document['Features'],

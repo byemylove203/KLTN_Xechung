@@ -28,6 +28,7 @@ class hostedCar extends StatelessWidget {
         stream: FirebaseFirestore.instance
             .collection('carInfo')
             .where('User', isEqualTo: uid)
+            .orderBy('Car ID', descending: true)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
@@ -42,7 +43,7 @@ class hostedCar extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                      height: MediaQuery.of(context).size.height,
+                      height: MediaQuery.of(context).size.height * 1.5,
                       child: ListView(
                         scrollDirection: Axis.vertical,
                         physics: BouncingScrollPhysics(),
@@ -51,10 +52,7 @@ class hostedCar extends StatelessWidget {
                           return hostedCarwidget(
                               car: Car(
                                   document['Type'],
-                                  [
-                                    "assets/images/car.jpeg",
-                                    "assets/images/car_1.jpeg"
-                                  ],
+                                  document['Images URL'],
                                   "200k",
                                   document['Description'],
                                   document['Features'],

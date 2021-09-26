@@ -62,7 +62,7 @@ class carWidget extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(car.imageUrl[0]),
+                            image: NetworkImage(car.imageUrl[0]),
                             fit: BoxFit.cover,
                           ),
                           borderRadius: BorderRadius.all(
@@ -75,7 +75,8 @@ class carWidget extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(16),
+                padding:
+                    EdgeInsets.only(top: 10, right: 16, left: 16, bottom: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -83,40 +84,48 @@ class carWidget extends StatelessWidget {
                       children: [
                         Text(
                           car.name,
+                          overflow: TextOverflow.fade,
+                          maxLines: 1,
+                          softWrap: false,
                           style: TextStyle(
                             color: Colors.grey[800],
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Spacer(
-                          flex: 2,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: <Widget>[
-                              Text(
-                                '200 nghìn VNĐ',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              Text(
-                                '/Một ngày',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey.withOpacity(0.8)),
-                              ),
-                            ],
-                          ),
-                        )
+                        // Spacer(
+                        //   flex: 2,
+                        // ),
                       ],
                     ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                              '200 nghìn VNĐ',
+                              overflow: TextOverflow.fade,
+                              maxLines: 1,
+                              softWrap: false,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                              ),
+                            ),
+                            Text(
+                              '/Một ngày',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey.withOpacity(0.8)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),

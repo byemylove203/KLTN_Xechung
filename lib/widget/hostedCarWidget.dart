@@ -63,7 +63,7 @@ class hostedCarwidget extends StatelessWidget {
                       width: 180,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage(car.imageUrl[0]),
+                              image: NetworkImage(car.imageUrl[0]),
                               fit: BoxFit.cover)),
                     ),
                     Flexible(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:xechung/model/bookedOders.dart';
 
 import 'package:xechung/widget/bookedCarWidget.dart';
+import 'package:xechung/widget/customButton.dart';
 
 class bookedCarHistory extends StatefulWidget {
   const bookedCarHistory({Key? key}) : super(key: key);
@@ -27,6 +28,7 @@ class _bookedCarHistoryState extends State<bookedCarHistory> {
             stream: FirebaseFirestore.instance
                 .collection('bookingOrder')
                 .where('Client User ID', isEqualTo: uid.toString())
+                .orderBy('CarID', descending: true)
                 .snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -40,12 +42,11 @@ class _bookedCarHistoryState extends State<bookedCarHistory> {
                   child: Column(
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.height,
+                        height: MediaQuery.of(context).size.height * 1.1,
                         child: ListView(
                           scrollDirection: Axis.vertical,
                           physics: BouncingScrollPhysics(),
                           children: snapshot.data!.docs.map((document) {
-                            // print(document.data);
                             return bookedCarWidget(
                                 orders: bookedOrders(
                                     document['OrderID'],

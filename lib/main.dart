@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 //import 'package:xechung/screen/homescreen.dart';
 import 'package:xechung/screen/navbar.dart';
 import 'package:xechung/screen/login.dart';
+import 'package:places_service/places_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

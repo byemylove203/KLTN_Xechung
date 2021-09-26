@@ -1,10 +1,10 @@
 class Car {
   String name;
-  List<String> imageUrl;
+  List<dynamic> imageUrl;
   String price;
   String descripstion;
   String feature;
-  String carID;
+  int carID;
   String userID;
   String status;
   bool favorite;
