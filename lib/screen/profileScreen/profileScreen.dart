@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ionicons/ionicons.dart';
 
-import 'package:xechung/screen/login.dart';
-import '../widget/customButton.dart';
-import 'addcarscreen/addCarImage.dart';
+import 'package:xechung/screen/loginScreen.dart';
+import 'package:xechung/screen/profileScreen/detailProfileScreen.dart';
+import '../../widget/customButton.dart';
+import '../addcarscreen/addCarImage.dart';
 
 class userscreen extends StatefulWidget {
   const userscreen({Key? key}) : super(key: key);
@@ -94,25 +95,34 @@ class _userscreenState extends State<userscreen> {
             customButton(
               text: "Tài Khoản",
               icon: Icon(Ionicons.person_outline),
-              press: () => {},
+              press: () => {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DetailProfileScreen()))
+              },
             ),
             customButton(
               text: "Về Chúng Tôi",
               icon: Icon(Ionicons.people_outline),
               press: inputData,
             ),
-            customButton(
-              color: Colors.red.shade400,
-              text: "Đăng Xuất",
-              icon: Icon(
-                Ionicons.log_out_outline,
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: customButton(
                 color: Colors.red.shade400,
+                text: "Đăng Xuất",
+                icon: Icon(
+                  Ionicons.log_out_outline,
+                  color: Colors.red.shade400,
+                ),
+                press: () async {
+                  await _auth.signOut();
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()));
+                },
               ),
-              press: () async {
-                await _auth.signOut();
-                Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (context) => login()));
-              },
             ),
           ],
         ),

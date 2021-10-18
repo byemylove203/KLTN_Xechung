@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:xechung/screen/addcarscreen/confirmAddNewCar.dart';
 import 'package:xechung/screen/addcarscreen/description.dart';
 import 'package:xechung/const/const.dart';
 import 'package:xechung/widget/customtext.dart';
 
 class carFeatures extends StatefulWidget {
   final Map<String, dynamic>? carInfo;
-  const carFeatures({Key? key, this.carInfo}) : super(key: key);
+  final Map<String, dynamic>? rides;
+  const carFeatures({Key? key, this.carInfo, this.rides}) : super(key: key);
 
   @override
   _carFeaturesState createState() => _carFeaturesState();
@@ -14,17 +16,18 @@ class carFeatures extends StatefulWidget {
 
 class _carFeaturesState extends State<carFeatures> {
   List<String> list = [
-    'Bluetooth',
-    'GPS',
-    'Cảnh báo điểm mù',
-    'Cruise Control',
+    'Thứ 2',
+    'Thứ 4',
+    'Thứ 6',
+    'Chủ nhật',
     'Camera 360',
-    'Tự động đỗ xe',
-    'Cửa sổ trời',
-    'Phanh khẩn cấp',
+    'Thứ 3',
+    'Thứ 5',
+    'Thứ 7',
     'Ghế chỉnh điện',
     'Sạc không dây'
   ];
+  bool isChoosen = false;
   int selectedItem = 0;
   List<String> _selected = [];
 
@@ -44,16 +47,17 @@ class _carFeaturesState extends State<carFeatures> {
       body: Column(
         children: [
           customText(
-            "Tính năng của xe",
+            "Chọn ngày xe đi",
             FontWeight.bold,
             size: 30,
           ),
           customText(
-            "Chọn tính năng xe bạn có.",
+            "Chọn những ngày bạn đi trong tuần.",
             FontWeight.normal,
             size: 18,
           ),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Column(
@@ -67,7 +71,6 @@ class _carFeaturesState extends State<carFeatures> {
                   customRadio(list[1], 1),
                   customRadio(list[2], 2),
                   customRadio(list[3], 3),
-                  customRadio(list[4], 4),
                   SizedBox(
                     height: 50,
                   ),
@@ -83,8 +86,6 @@ class _carFeaturesState extends State<carFeatures> {
                   customRadio(list[5], 5),
                   customRadio(list[6], 6),
                   customRadio(list[7], 7),
-                  customRadio(list[8], 8),
-                  customRadio(list[9], 9),
                   SizedBox(
                     height: 50,
                   ),
@@ -103,29 +104,39 @@ class _carFeaturesState extends State<carFeatures> {
                     style: TextStyle(fontSize: 15.0, color: Colors.white),
                   ),
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        Constants.kPrimaryColor),
+                    backgroundColor: isChoosen
+                        ? MaterialStateProperty.all<Color>(
+                            Constants.kPrimaryColor)
+                        : MaterialStateProperty.all<Color>(Colors.grey),
                     padding: MaterialStateProperty.all<EdgeInsets>(
                         EdgeInsets.all(15)),
-                    foregroundColor: MaterialStateProperty.all<Color>(
-                        Constants.kPrimaryColor),
+                    foregroundColor: isChoosen
+                        ? MaterialStateProperty.all<Color>(
+                            Constants.kPrimaryColor)
+                        : MaterialStateProperty.all<Color>(Colors.black),
                   ),
                   onPressed: () {
-                    Map<String, dynamic> features = {
-                      "Features": _selected.join(",")
-                    };
+                    if (isChoosen == true) {
+                      Map<String, dynamic> daysOfWeek = {
+                        "Days Of Week": _selected
+                      };
+                      Map<String, dynamic> features = {
+                        "Features": _selected.join(",")
+                      };
 
-                    Map<String, dynamic> result = {
-                      ...widget.carInfo!,
-                      ...features,
-                    };
-                    //print(result);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => description(
-                                  carInfo: result,
-                                )));
+                      Map<String, dynamic> rides = {
+                        ...widget.rides!,
+                        ...daysOfWeek
+                      };
+                      print(rides);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => confirmAddNewCar(
+                                    carInfo: rides,
+                                    rides: rides,
+                                  )));
+                    }
                   }),
             ),
           ),
@@ -141,6 +152,10 @@ class _carFeaturesState extends State<carFeatures> {
       isSelected
           ? _selected.remove(list.elementAt(index))
           : _selected.add(list.elementAt(index));
+      if (_selected.isNotEmpty)
+        isChoosen = true;
+      else
+        isChoosen = false;
     });
   }
 

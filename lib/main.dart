@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 //import 'package:xechung/screen/homescreen.dart';
 import 'package:xechung/screen/navbar.dart';
-import 'package:xechung/screen/login.dart';
+import 'package:xechung/screen/loginScreen.dart';
 import 'package:places_service/places_service.dart';
 
 Future<void> main() async {
@@ -65,7 +65,7 @@ class _InitializerWidgetState extends State<InitializerWidget> {
             ),
           )
         : _user == null
-            ? login()
+            ? LoginScreen()
             : navbar();
   }
 }

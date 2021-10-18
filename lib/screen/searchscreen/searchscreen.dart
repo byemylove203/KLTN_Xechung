@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:day_night_time_picker/lib/daynight_timepicker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_place/google_place.dart';
 import 'package:ionicons/ionicons.dart';
@@ -25,12 +26,13 @@ class _searchScreenState extends State<searchScreen> {
     '3 ghế ngồi',
     '4 ghế ngồi',
   ];
-
-  @override
-  void initState() {
-    googlePlace = GooglePlace('AIzaSyAKPveAbIHRL4sIAmEGgvnUQ1Q3C5zluko');
-    super.initState();
-  }
+  TimeOfDay _startTime = TimeOfDay.now().replacing(minute: 30);
+  bool choosen = false;
+  // @override
+  // void initState() {
+  //   googlePlace = GooglePlace('AIzaSyAKPveAbIHRL4sIAmEGgvnUQ1Q3C5zluko');
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +147,7 @@ class _searchScreenState extends State<searchScreen> {
                       Row(
                         children: [
                           Icon(
-                            Ionicons.calendar_outline,
+                            Ionicons.time_outline,
                             color: Colors.white,
                           ),
                           Container(
@@ -161,7 +163,15 @@ class _searchScreenState extends State<searchScreen> {
                               height: 60,
                               width: MediaQuery.of(context).size.width * 0.8,
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).push(showPicker(
+                                    iosStylePicker: true,
+                                    is24HrFormat: true,
+                                    context: context,
+                                    value: _startTime,
+                                    onChange: onTimeChanged,
+                                  ));
+                                },
                                 child: Container(
                                   margin: EdgeInsets.only(
                                     left: 10,
@@ -272,5 +282,12 @@ class _searchScreenState extends State<searchScreen> {
         predictions = result.predictions!;
       });
     }
+  }
+
+  void onTimeChanged(TimeOfDay newTime) {
+    setState(() {
+      _startTime = newTime;
+      choosen = true;
+    });
   }
 }

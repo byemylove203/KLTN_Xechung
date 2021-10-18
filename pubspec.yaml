@@ -27,6 +27,8 @@ dependencies:
   firebase_core: ^1.6.0
   firebase_auth: ^3.1.0
   firebase_storage: ^10.0.3
+  flutter_firebase_chat_core: ^1.4.2
+  flutter_chat_ui: ^1.4.4
   provider: ^5.0.0
   custom_navigation_bar:
   page_transition: ^2.0.2 
@@ -42,8 +44,14 @@ dependencies:
   google_place: ^0.4.3
   places_service: ^0.1.0+2
   google_maps_flutter: ^2.0.10
+  google_maps_place_picker: ^2.1.0-nullsafety.3
   stacked: ^2.2.5
   http: ^0.13.3
+  open_file: ^3.2.1
+  bubble: ^1.2.1
+  flutter_rating_bar: ^4.0.0
+  uuid: ^3.0.5
+  percent_indicator: ^3.4.0
   sqflite:
   path:
   # The following adds the Cupertino Icons font to your application.

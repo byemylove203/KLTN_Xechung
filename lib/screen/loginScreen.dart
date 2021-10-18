@@ -8,14 +8,14 @@ enum MobileVerificationState {
   SHOW_OTP_FORM_STATE,
 }
 
-class login extends StatefulWidget {
-  const login({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  _loginState createState() => _loginState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _loginState extends State<login> {
+class _LoginScreenState extends State<LoginScreen> {
   MobileVerificationState currentState =
       MobileVerificationState.SHOW_MOBILE_FORM_STATE;
 
@@ -96,7 +96,7 @@ class _loginState extends State<login> {
               codeAutoRetrievalTimeout: (verificationId) async {},
             );
           },
-          child: Text("SEND"),
+          child: Text("GỬI"),
         ),
         Spacer(),
       ],
@@ -110,7 +110,7 @@ class _loginState extends State<login> {
         TextField(
           keyboardType: TextInputType.number,
           controller: optController,
-          decoration: InputDecoration(hintText: "Enter OTP"),
+          decoration: InputDecoration(hintText: "Nhập mã OTP gửi về máy bạn"),
         ),
         SizedBox(
           height: 16,
@@ -123,7 +123,7 @@ class _loginState extends State<login> {
                     smsCode: optController.text);
             signInWithPhoneAuthCredential(phoneAuthCredential);
           },
-          child: Text("VERIFY"),
+          child: Text("XÁC NHẬN"),
         ),
         Spacer(),
       ],

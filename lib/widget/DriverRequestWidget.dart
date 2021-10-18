@@ -5,9 +5,9 @@ import 'package:xechung/const/const.dart';
 import 'package:xechung/model/car.dart';
 import 'package:xechung/screen/hostedcarscreen/editcarscreen.dart';
 
-class hostedCarwidget extends StatelessWidget {
+class DriverRequestWidget extends StatelessWidget {
   final Car car;
-  hostedCarwidget({required this.car});
+  DriverRequestWidget({required this.car});
   @override
   Widget build(BuildContext context) {
     double widgetHeight = MediaQuery.of(context).size.height / 3;

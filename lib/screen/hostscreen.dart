@@ -4,7 +4,7 @@ import 'package:ionicons/ionicons.dart';
 
 import 'package:page_transition/page_transition.dart';
 import 'package:xechung/screen/addcarscreen/addcarscreen.dart';
-import 'package:xechung/screen/hostedcarscreen/hostedcar.dart';
+import 'package:xechung/screen/hostedcarscreen/driverRequestScreen.dart';
 import 'package:xechung/widget/customButton.dart';
 
 class hostscreen extends StatefulWidget {
@@ -41,7 +41,7 @@ class _hostscreenState extends State<hostscreen> {
               },
             ),
             customButton(
-              text: "Quản lý xe",
+              text: "Yêu cầu đi chung",
               icon: Icon(Ionicons.car_outline),
               press: () => {
                 Navigator.push(
@@ -51,7 +51,7 @@ class _hostscreenState extends State<hostscreen> {
                         type: PageTransitionType.size,
                         duration: Duration(milliseconds: 300),
                         reverseDuration: Duration(milliseconds: 300),
-                        child: hostedCar()))
+                        child: DriverRequestScreen()))
               },
             ),
             // Container(

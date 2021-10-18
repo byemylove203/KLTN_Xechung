@@ -3,13 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:xechung/const/const.dart';
+import 'package:xechung/screen/chooseRidesScreen/chooseRideScreen.dart';
 
 import 'package:xechung/screen/homescreen/homescreen.dart';
 import 'package:xechung/screen/hostscreen.dart';
 import 'package:xechung/screen/searchscreen/searchscreen.dart';
-import 'package:xechung/screen/bookingHistory/bookedCarHistory.dart';
-import 'package:xechung/screen/profileScreen.dart';
+
+import 'package:xechung/screen/profileScreen/profileScreen.dart';
 import 'package:xechung/widget/customtext.dart';
+
+import 'bookingHistory/ridesHistory.dart';
 
 class navbar extends StatefulWidget {
   const navbar({Key? key}) : super(key: key);
@@ -21,10 +25,12 @@ class navbar extends StatefulWidget {
 class _navbarState extends State<navbar> {
   //final _auth = FirebaseAuth.instance;
 //Defaut Screen, change this to set default screen!!!!!
-  int _seletedIndex = 2;
+  int _seletedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
-    homescreen(),
-    bookedCarHistory(),
+    //homescreen(),
+    ChooseRideScreen(),
+    ridesHistory(),
+    //bookedCarHistory(),
     searchScreen(),
     hostscreen(),
     userscreen(),
@@ -37,56 +43,67 @@ class _navbarState extends State<navbar> {
       });
     }
 
-    return CustomNavigationBar(
-        iconSize: 24.0,
-        strokeColor: Colors.white,
-        selectedColor: Color(0xff7BE495),
-        unSelectedColor: Colors.grey,
-        backgroundColor: Colors.white,
-        items: [
-          CustomNavigationBarItem(
-            icon: Icon(Ionicons.home),
-            title: customText(
-              "Trang Chủ",
-              FontWeight.normal,
-              size: 10,
+    return Container(
+      height: Constants.bottomNavHeight,
+      child: CustomNavigationBar(
+          iconSize: 24.0,
+          strokeColor: Colors.white,
+          selectedColor: Color(0xff7BE495),
+          unSelectedColor: Colors.grey,
+          backgroundColor: Colors.white,
+          items: [
+            // CustomNavigationBarItem(
+            //   icon: Icon(Ionicons.home),
+            //   title: customText(
+            //     "Trang Chủ",
+            //     FontWeight.normal,
+            //     size: 10,
+            //   ),
+            // ),
+            CustomNavigationBarItem(
+              icon: Icon(Ionicons.calendar_outline),
+              title: customText(
+                "Đi chung",
+                FontWeight.normal,
+                size: 10,
+              ),
             ),
-          ),
-          CustomNavigationBarItem(
-            icon: Icon(Ionicons.calendar_outline),
-            title: customText(
-              "Lịch sử",
-              FontWeight.normal,
-              size: 10,
+            CustomNavigationBarItem(
+              icon: Icon(Ionicons.calendar_outline),
+              title: customText(
+                "Lịch sử",
+                FontWeight.normal,
+                size: 10,
+              ),
             ),
-          ),
-          CustomNavigationBarItem(
-            icon: Icon(Ionicons.search_outline),
-            title: customText(
-              "Tìm kiếm",
-              FontWeight.normal,
-              size: 10,
+            CustomNavigationBarItem(
+              icon: Icon(Ionicons.search_outline),
+              title: customText(
+                "Tìm kiếm",
+                FontWeight.normal,
+                size: 10,
+              ),
             ),
-          ),
-          CustomNavigationBarItem(
-            icon: Icon(Ionicons.car),
-            title: customText(
-              "Chủ xe",
-              FontWeight.normal,
-              size: 10,
+            CustomNavigationBarItem(
+              icon: Icon(Ionicons.car),
+              title: customText(
+                "Chủ xe",
+                FontWeight.normal,
+                size: 10,
+              ),
             ),
-          ),
-          CustomNavigationBarItem(
-            icon: Icon(Ionicons.person_circle),
-            title: customText(
-              "Tài khoản",
-              FontWeight.normal,
-              size: 10,
+            CustomNavigationBarItem(
+              icon: Icon(Ionicons.person_circle),
+              title: customText(
+                "Tài khoản",
+                FontWeight.normal,
+                size: 10,
+              ),
             ),
-          ),
-        ],
-        currentIndex: _seletedIndex,
-        onTap: _onItemTap);
+          ],
+          currentIndex: _seletedIndex,
+          onTap: _onItemTap),
+    );
   }
 
   @override

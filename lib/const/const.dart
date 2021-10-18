@@ -2,19 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
 class Constants {
+  static const double bottomNavHeight = 100;
+  static const double AppBarHeight = 52;
   static const kPrimaryColor = Color(0xff56c596);
   static const buttonTextColor = Colors.black;
+  static const String apiKey = 'AIzaSyAKPveAbIHRL4sIAmEGgvnUQ1Q3C5zluko';
+  static const String apiKey2 = 'AIzaSyCVIwvqcwWVG-aQ_uxh4V10ryz8u9LwPTw';
   static const List<IconData> featureIcon = [
-    Icons.bluetooth,
-    Ionicons.navigate_outline,
-    Ionicons.warning_outline,
-    Ionicons.speedometer_outline,
-    Ionicons.videocam_outline,
-    Ionicons.car_outline,
-    Ionicons.image_outline,
-    Ionicons.alert_outline,
-    Ionicons.move_outline,
-    Ionicons.wifi_outline,
+    Ionicons.calendar_number_outline,
+    Ionicons.calendar_number_outline,
+    Ionicons.calendar_number_outline,
+    Ionicons.calendar_number_outline,
+    Ionicons.calendar_number_outline,
+    Ionicons.calendar_number_outline,
+    Ionicons.calendar_number_outline,
+    Ionicons.calendar_number_outline,
+    Ionicons.calendar_number_outline,
+    Ionicons.calendar_number_outline,
   ];
   static const List<String> tinhthanh = [
     "An Giang",
